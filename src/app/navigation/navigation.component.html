@@ -17,7 +17,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
+      @if (!(isHandset$ | async)) {
       <button
         type="button"
         aria-label="Toggle sidenav"

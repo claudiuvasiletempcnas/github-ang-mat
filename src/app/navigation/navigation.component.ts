@@ -6,8 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject,Observable } from 'rxjs';
+import { startWith, map, shareReplay } from 'rxjs/operators';
 import {
   MatSlideToggleChange,
   MatSlideToggleModule,
@@ -31,15 +31,27 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class NavigationComponent {
-  private breakpointObserver = inject(BreakpointObserver);
+  //private breakpointObserver = inject(BreakpointObserver);
   private document = inject(DOCUMENT);
+  isHandset$ = new BehaviorSubject<boolean>(true);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
+  constructor(private breakpointObserver: BreakpointObserver) {
+  this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
+      startWith({ matches: true }),
+      map((result) => result.matches)
+    )
+    .subscribe(value => this.isHandset$.next(value));
+}
+
+  /*isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      startWith({ matches: true }),
       map((result) => result.matches),
       shareReplay()
-    );
+    );*/
 
   onThemeChange(event: MatSlideToggleChange) {
     this.document.body.classList.toggle('dark');
