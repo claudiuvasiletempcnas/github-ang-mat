@@ -12,6 +12,7 @@ import {
   MatSlideToggleChange,
   MatSlideToggleModule,
 } from '@angular/material/slide-toggle';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -26,6 +27,7 @@ import {
     MatIconModule,
     AsyncPipe,
     MatSlideToggleModule,
+    RouterModule,
   ],
 })
 export class NavigationComponent {

@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { TableComponent } from './table/table.component';
 import { ButtonsComponent } from './buttons/buttons.component';
+import { LayoutComponent } from './layout/layout.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,8 @@ import { ButtonsComponent } from './buttons/buttons.component';
     AddressFormComponent,
     TableComponent,
     ButtonsComponent,
+    LayoutComponent,
+    RouterModule,
   ],
   templateUrl: './app.component.html',
 })
