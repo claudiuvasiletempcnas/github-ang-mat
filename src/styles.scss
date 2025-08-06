@@ -1,0 +1,86 @@
+@use '@angular/material' as mat;
+@use './styles/_theme-colors.scss' as theme-colors;
+
+@include mat.core();
+
+// Define custom palettes
+$my-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$my-accent: mat.m2-define-palette(mat.$m2-pink-palette);
+$my-warn: mat.m2-define-palette(mat.$m2-red-palette);
+$my-secondary: mat.m2-define-palette(mat.$m2-blue-grey-palette, 500);
+/*
+// Define the theme including secondary
+$my-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+      secondary: $my-secondary,
+      // <--- This is a custom extension
+    ),
+  )
+);
+
+// Apply base theme styles
+@include mat.all-component-themes($my-theme);*/
+// LIGHT THEME
+$light-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+      secondary: $my-secondary,
+    ),
+  )
+);
+
+// DARK THEME
+$dark-theme: mat.m2-define-dark-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+      secondary: $my-secondary,
+    ),
+  )
+);
+
+// Light theme
+.light {
+  @include mat.all-component-themes($light-theme);
+}
+
+// Dark theme
+.dark {
+  @include mat.all-component-colors($dark-theme);
+}
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: theme-colors.$primary-palette,
+        tertiary: theme-colors.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+body {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
